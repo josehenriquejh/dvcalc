@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,11 +80,10 @@ public class MainFrame extends javax.swing.JFrame {
         radiorg = new javax.swing.JRadioButton();
         radiocpf = new javax.swing.JRadioButton();
         radiocnpj = new javax.swing.JRadioButton();
-        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(360, 330));
-        setPreferredSize(new java.awt.Dimension(460, 300));
+        setMinimumSize(new java.awt.Dimension(440, 291));
+        setPreferredSize(new java.awt.Dimension(500, 291));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 formComponentMoved(evt);
@@ -98,10 +96,10 @@ public class MainFrame extends javax.swing.JFrame {
                 txt1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, -1));
+        getContentPane().add(txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 64, 173, -1));
 
         lbl1.setText("CPF com 9 Digitos (calcular 2 dígitos verificadores):");
-        getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 43, -1, -1));
 
         btn1.setText("Consultar");
         btn1.setToolTipText("Consulta os 2 dígitos verificadores do CPF, insira apenas os 9 primeiros dígitos");
@@ -112,34 +110,29 @@ public class MainFrame extends javax.swing.JFrame {
                 btn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 63, -1, -1));
 
         btn2.setText("Validar");
         btn2.setToolTipText("Consulta se o CPFé válido, já com os 11 dígitos contando com os 2 dígitos verificadores");
-        btn2.setMaximumSize(null);
-        btn2.setMinimumSize(null);
-        btn2.setPreferredSize(null);
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, -1));
+        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 80, -1));
 
         lbl2.setText("CPF 11 Digitos (calcular se o CPF é válido ou descobrir CPF similares):");
-        getContentPane().add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
-        getContentPane().add(txt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 180, -1));
+        getContentPane().add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        getContentPane().add(txt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 173, -1));
 
         btn3.setText("Gerar CPFs Similares");
         btn3.setToolTipText("Se o CPF estiver com 1 número errado, calcula o CPF correto, informar o CPF errado com 11 dígitos");
-        btn3.setMaximumSize(null);
-        btn3.setMinimumSize(null);
         btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn3ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 180, -1));
+        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 173, -1));
 
         btnsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnsair.setText("Sair");
@@ -149,30 +142,26 @@ public class MainFrame extends javax.swing.JFrame {
                 btnsairActionPerformed(evt);
             }
         });
-        getContentPane().add(btnsair, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, -1));
+        getContentPane().add(btnsair, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 80, -1));
 
         selecaorgcpf.add(radiorg);
         radiorg.setText("RG");
-        radiorg.setMaximumSize(new java.awt.Dimension(51, 23));
-        radiorg.setMinimumSize(new java.awt.Dimension(51, 23));
         radiorg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiorgActionPerformed(evt);
             }
         });
-        getContentPane().add(radiorg, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+        getContentPane().add(radiorg, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
         selecaorgcpf.add(radiocpf);
         radiocpf.setSelected(true);
         radiocpf.setText("CPF");
-        radiocpf.setMaximumSize(new java.awt.Dimension(51, 23));
-        radiocpf.setMinimumSize(new java.awt.Dimension(51, 23));
         radiocpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiocpfActionPerformed(evt);
             }
         });
-        getContentPane().add(radiocpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 50, -1));
+        getContentPane().add(radiocpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 50, -1));
 
         selecaorgcpf.add(radiocnpj);
         radiocnpj.setText("CNPJ");
@@ -181,8 +170,7 @@ public class MainFrame extends javax.swing.JFrame {
                 radiocnpjActionPerformed(evt);
             }
         });
-        getContentPane().add(radiocnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 601, 10));
+        getContentPane().add(radiocnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -281,11 +269,7 @@ public class MainFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Cpf Válido!");
                     validador.copytoclipboard(CPF11);
                 } else {
-                    //JOptionPane.showMessageDialog(null, "Cpf Inválido");
-                    Object[] options = { "Sim", "Não" };
-                   int opcao = 0; 
-                   opcao = JOptionPane.showOptionDialog(null, "Valor de CPF Inválido, deseja calcular CPFs similares/corrigir erros?", "CPF Inválido", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                    if (opcao == 0){btn3ActionPerformed(evt);}
+                    JOptionPane.showMessageDialog(null, "Cpf Inválido");
                 }
             }
         } else {
@@ -299,12 +283,7 @@ public class MainFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "CNPJ Válido!");
                     validador.copytoclipboard(CNPJ14);
                 } else {
-                    //JOptionPane.showMessageDialog(null, "CNPJ Inválido");
-                    Object[] options = { "Sim", "Não" };
-                   int opcao = 0; 
-                   opcao = JOptionPane.showOptionDialog(null, "Valor de CNPJ Inválido, deseja calcular CNPJs similares/corrigir erros?", "CNPJ Inválido", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                    if (opcao == 0){btn3ActionPerformed(evt);
-                    }
+                    JOptionPane.showMessageDialog(null, "CNPJ Inválido");
                 }
             }
         }
@@ -337,14 +316,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsairActionPerformed
 
     private void radiorgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiorgActionPerformed
-        txt2.setVisible(true);
-        btn2.setVisible(true);
-        btn3.setVisible(true);
-        lbl2.setVisible(true);
+        txt2.setVisible(false);
+        btn2.setVisible(false);
+        btn3.setVisible(false);
+        lbl2.setVisible(false);
         lbl1.setText("RG de SSP/SP 7 ou 8 dígitos:");
-        lbl2.setText("RG 7 ou 8 Digitos (calcular se o RG é válido ou descobrir CPF similares):");
-        btn3.setText("Gerar RGs Similares");
-        
     }//GEN-LAST:event_radiorgActionPerformed
 
     private void radiocpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiocpfActionPerformed
@@ -354,7 +330,6 @@ public class MainFrame extends javax.swing.JFrame {
         lbl2.setVisible(true);
         lbl1.setText("CPF 9 Digitos:");
         lbl2.setText("CPF 11 Digitos (calcular se o CPF é válido ou descobrir CPF similares):");
-        btn3.setText("Gerar CPFs Similares");
     }//GEN-LAST:event_radiocpfActionPerformed
 
     private void txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt1ActionPerformed
@@ -372,7 +347,6 @@ public class MainFrame extends javax.swing.JFrame {
         lbl2.setVisible(true);
         lbl1.setText("CNPJ 8 ou 12 Digitos:");
         lbl2.setText("CNPJ 14 Digitos (calcular se o CNPJ é válido ou descobrir CNPJ similares):");
-        btn3.setText("Gerar CNPJs Similares");
     }//GEN-LAST:event_radiocnpjActionPerformed
 
     /**
@@ -432,7 +406,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btnsair;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JRadioButton radiocnpj;
