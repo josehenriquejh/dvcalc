@@ -191,9 +191,9 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } else if (radiocnpj.isSelected()) {
-            switch (txt1.getText().length()) {
+            switch (txt1.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","").length()) {
                 case 8:
-                    CNPJ8 = txt1.getText().replace(".", "").replace(",", "").replace("-", "");
+                    CNPJ8 = txt1.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
                     System.out.println(CNPJ8);
                     validador.y9 = 0;
                     validador.y10 = 0;
@@ -210,7 +210,7 @@ public class MainFrame extends javax.swing.JFrame {
                     break;
 
                 case 12:
-                    CNPJ12 = txt1.getText().replace(".", "").replace(",", "").replace("-", "");
+                    CNPJ12 = txt1.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
                     System.out.println(CNPJ12);
                     calculacnpj12();
                     try {
@@ -218,6 +218,10 @@ public class MainFrame extends javax.swing.JFrame {
                     } catch (ParseException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    break;
+                    
+                case 14:
+                    JOptionPane.showMessageDialog(null,"Valor Inserido do CNPJ já está completo/possui 14 dígitos.");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Valor Inserido do CNPJ Incorreto.");
@@ -273,7 +277,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } else {
-            CNPJ14 = txt2.getText().replace(".", "").replace(",", "").replace("-", "");
+            CNPJ14 = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
 
             if (CNPJ14.length() != 14) {
                 JOptionPane.showMessageDialog(null, "Valor informado não possui 14 dígitos.");
@@ -299,7 +303,7 @@ public class MainFrame extends javax.swing.JFrame {
             validador.gerarsimilares(CPF11);
             txt2.setText(validador.CPFbuffer);
         } else if (radiocnpj.isSelected()) {
-            CNPJ14 = txt2.getText().replace(".", "").replace(",", "").replace("-", "");
+            CNPJ14 = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
             validador.carregavalorcnpj(CNPJ14);
             //for(int i = 0; i <= 10; i++){
             //    System.out.println(validador.v[i]);}
