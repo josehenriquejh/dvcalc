@@ -58,7 +58,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="btn1">
+    <Component class="javax.swing.JButton" name="btnconsultar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar"/>
         <Property name="toolTipText" type="java.lang.String" value="Consulta os 2 d&#xed;gitos verificadores do CPF, insira apenas os 9 primeiros d&#xed;gitos"/>
@@ -70,7 +70,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnconsultarActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -78,13 +78,13 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="btn2">
+    <Component class="javax.swing.JButton" name="btnvalidar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Validar"/>
         <Property name="toolTipText" type="java.lang.String" value="Consulta se o CPF&#xe9; v&#xe1;lido, j&#xe1; com os 11 d&#xed;gitos contando com os 2 d&#xed;gitos verificadores"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnvalidarActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -109,13 +109,13 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="btn3">
+    <Component class="javax.swing.JButton" name="btnsimilares">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gerar CPFs Similares"/>
         <Property name="toolTipText" type="java.lang.String" value="Se o CPF estiver com 1 n&#xfa;mero errado, calcula o CPF correto, informar o CPF errado com 11 d&#xed;gitos"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnsimilaresActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

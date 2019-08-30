@@ -59,6 +59,8 @@ public class ValidadorCPF {
     
     public int[] x = new int[9];
     String RG;
+    public String RGbuffer;
+    public String RG1;
     int x1;
     int x2;
     int x3;
@@ -228,6 +230,10 @@ public class ValidadorCPF {
      x9 = 0;}
      }
      
+     public void digitorg7(){
+     }
+     public void digitorg8(){
+     }
      
     public boolean validadigitosbtn(String CPF){
         digito1(CPF);
@@ -250,7 +256,18 @@ public class ValidadorCPF {
         return Character.getNumericValue(CNPJ.charAt(12)) == y13 && Character.getNumericValue(CNPJ.charAt(13)) == y14;
     }
     
-     public void gerarsimilares(String CPF11){
+    public boolean validadigitosrg7(String RG7){
+        
+        return true;
+    }
+    
+    public boolean validadigitosrg8(String RG8){
+    
+        return true;
+    }
+
+    
+    public void gerarsimilares(String CPF11){
          System.out.println("Entrada = ''"+ CPF11 +"''");
          for(int i = 0; i < 10; i++){
              for(int j = 0; j <=10; j++){
@@ -383,6 +400,9 @@ public class ValidadorCPF {
      }
      
      
+     public void gerarsimilaresrg(){}
+     
+     
      public void copytoclipboard(String CPF){
          try{
         StringSelection stringSelection = new StringSelection(CPF);
@@ -402,4 +422,16 @@ public class ValidadorCPF {
          Logger.getLogger(ValidadorCPF.class.getName()).log(Level.SEVERE, null, ex);
          }
      }
+      
+     public void copytoclipboardrg(String RG){
+         try{
+        StringSelection stringSelection = new StringSelection(RG);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);}
+         catch (Exception ex){
+         Logger.getLogger(ValidadorCPF.class.getName()).log(Level.SEVERE, null, ex);
+         }
+     
+     } 
+      
 }
