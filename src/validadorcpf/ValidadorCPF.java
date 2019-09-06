@@ -388,7 +388,7 @@ public class ValidadorCPF {
                     y[k] = 0;
                 }
 
-                CNPJ1 = (y[0] + "" + y[1] + "" + y[2] + "" + y[3] + "" + y[4] + "" + y[5] + "" + y[6] + "" + y[7] + "" + y[8] + "" + y[9] + "" + y[10] + "" + y[11] + "" + y13 + "" + y14);
+                CNPJ1 = (y[0] + "" + y[1] + "" + y[2] + "" + y[3] + "" + y[4] + "" + y[5] + "" + y[6] + "" + y[7] + "" + y[8] + "" + y[9] + "" + y[10] + "" + y[11] + "" + y[12] + "" + y[13]);
                 carregavalorcnpj(CNPJ1);
                 digito1cnpj12(CNPJ1);
                 digito2cnpj12();
@@ -404,9 +404,6 @@ public class ValidadorCPF {
             }
 
         }
-    }
-
-    public void gerarsimilaresrg() {
     }
 
     public void gerarsimilaresrg7(String RG7) {
