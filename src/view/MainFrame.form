@@ -81,7 +81,7 @@
     <Component class="javax.swing.JButton" name="btnvalidar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Validar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Consulta se o CPF&#xe9; v&#xe1;lido, j&#xe1; com os 11 d&#xed;gitos contando com os 2 d&#xed;gitos verificadores"/>
+        <Property name="toolTipText" type="java.lang.String" value="Consulta se o CPF &#xe9; v&#xe1;lido, j&#xe1; com os 11 d&#xed;gitos contando com os 2 d&#xed;gitos verificadores"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnvalidarActionPerformed"/>
@@ -145,7 +145,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="selecaorgcpf"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="RG"/>
+        <Property name="text" type="java.lang.String" value="RG SSP/SP"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiorgActionPerformed"/>

@@ -61,6 +61,8 @@ public class ValidadorCPF {
     String RG;
     public String RGbuffer;
     public String RG1;
+    public String RG7;
+    public String RG8;
     int x1;
     int x2;
     int x3;
@@ -68,7 +70,7 @@ public class ValidadorCPF {
     int x5;
     int x6;
     int x7;
-    int x8;
+    public int x8;
     public int x9;
    /**
      * @param args the command line arguments
@@ -107,7 +109,7 @@ public class ValidadorCPF {
      x[i] = Character.getNumericValue(RG.charAt(i));}
          catch (Exception ex){}
      }
-     try{
+     
      x1 = Character.getNumericValue(RG.charAt(0));
      x2 = Character.getNumericValue(RG.charAt(1));
      x3 = Character.getNumericValue(RG.charAt(2));
@@ -115,6 +117,7 @@ public class ValidadorCPF {
      x5 = Character.getNumericValue(RG.charAt(4));
      x6 = Character.getNumericValue(RG.charAt(5));
      x7 = Character.getNumericValue(RG.charAt(6));
+     try{
      x8 = Character.getNumericValue(RG.charAt(7));
      x9 = Character.getNumericValue(RG.charAt(8));}
      catch (Exception e){}
@@ -223,17 +226,29 @@ public class ValidadorCPF {
      }
      
      
-     public void digitorg(){
-     x9 = ((x1*9)+(x2*8)+(x3*7)+(x4*6)+(x5*5)+(x6*4)+(x7*3)+(x8*2))%11;
+     public void digitorg1(){    
+     x9 = (((x1*9)+(x2*8)+(x3*7)+(x4*6)+(x5*5)+(x6*4)+(x7*3)+(x8*2))%11);
      
      if (x9 >=10){
      x9 = 0;}
      }
      
-     public void digitorg7(){
+     public void digitorg7(String RG7){
+     carregavalorrg(RG7); 
+     x8 = ((x1*8)+(x2*7)+(x3*6)+(x4*5)+(x5*4)+(x6*3)+(x7*2))%11;
+     if (x8 >=10){
+     x8 = 0;
      }
-     public void digitorg8(){
      }
+     
+     public void digitorg8(String RG8){
+     carregavalorrg(RG8);
+     x9 = ((x1*9)+(x2*8)+(x3*7)+(x4*6)+(x5*5)+(x6*4)+(x7*3)+(x8*2))%11; 
+    if (x9 >=10){
+     x9 = 0;
+     }
+     }
+     
      
     public boolean validadigitosbtn(String CPF){
         digito1(CPF);
@@ -256,14 +271,14 @@ public class ValidadorCPF {
         return Character.getNumericValue(CNPJ.charAt(12)) == y13 && Character.getNumericValue(CNPJ.charAt(13)) == y14;
     }
     
-    public boolean validadigitosrg7(String RG7){
-        
-        return true;
+    public boolean validadigitosrg7(String RG){
+        digitorg7(RG);
+        return Character.getNumericValue(RG.charAt(7)) == x8;
     }
     
-    public boolean validadigitosrg8(String RG8){
-    
-        return true;
+    public boolean validadigitosrg8(String RG){
+        digitorg8(RG);
+        return Character.getNumericValue(RG.charAt(8)) == x9;
     }
 
     
@@ -373,7 +388,7 @@ public class ValidadorCPF {
               break;}   
           
           for(int k = 0; k <=13; k++){
-         carregavalor(CNPJ14);
+         carregavalorcnpj(CNPJ14);
          
          if(y[k] - (int) i >= 0){
          y[k] = y[k] - (int) i;}
@@ -401,6 +416,131 @@ public class ValidadorCPF {
      
      
      public void gerarsimilaresrg(){}
+     
+     
+    public void gerarsimilaresrg7(String RG7) {
+        System.out.println("Entrada = '" + RG7 + "'");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j <= 7; j++) {
+                carregavalorrg(RG7);
+                x[j] = x[j] + (int) i;
+
+                if (x[j] >= 10) {
+                    x[j] = 0;
+                }
+
+                RG1 = (x[0] + "" + x[1] + "" + x[2] + "" + x[3] + "" + x[4] + "" + x[5] + "" + x[6] + "" + x[7]);
+
+                carregavalorrg(RG1);
+                digitorg7(RG1);
+                if (validadigitosrg7(RG1) == true) {
+                    if (RG7.equals(RG1)) {
+                        JOptionPane.showMessageDialog(null, "O RG informado já está correto!");
+                        RGbuffer = RG1;
+                    } else {
+                        JOptionPane.showMessageDialog(null, RG1);
+                        System.out.println(RG1 + " = RG ''Descoberto'' 1 casa RG 7 dig");
+                        RGbuffer = RG1;
+                        copytoclipboard(RGbuffer);
+                    }
+                    resolvido = true;
+
+                    break;
+         //resolvido = true;
+
+                }
+            }
+            
+              if (resolvido)              
+          { resolvido = false;
+              break;}   
+              
+         for(int k = 0; k <= 7; k++){
+         carregavalorcnpj(RG1);
+         
+         if(x[k] - (int) i >= 0){
+         x[k] = y[k] - (int) i;}
+         
+         if(x[k] >= 10 && x[k] < 0){
+         x[k] = 0;}
+         
+         RG1 = (x[0]+""+x[1]+""+x[2]+""+x[3]+""+x[4]+""+x[5]+""+x[6]+""+x[7]);
+         carregavalorrg(RG1);
+         digitorg7(RG1);
+         if(validadigitosrg7(RG1) == true){
+         JOptionPane.showMessageDialog(null, RG1);   
+         System.out.println(RG1+" = RG ''Descoberto'' 2 casas RG 7 dig");
+         RGbuffer = RG1;
+         copytoclipboard(RGbuffer);
+         resolvido = true;
+         break;
+         }
+         
+             }   
+        }
+    }
+     public void gerarsimilaresrg8(String RG8){
+         System.out.println("Entrada = '" + RG8 + "'");
+             System.out.println("Entrada = '" + RG8 + "'");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j <= 8; j++) {
+                carregavalorrg(RG8);
+                x[j] = x[j] + (int) i;
+
+                if (x[j] >= 10) {
+                    x[j] = 0;
+                }
+
+                RG1 = (x[0] + "" + x[1] + "" + x[2] + "" + x[3] + "" + x[4] + "" + x[5] + "" + x[6] + "" + x[7] + "" + x[8]);
+
+                carregavalorrg(RG1);
+                digitorg7(RG1);
+                if (validadigitosrg7(RG1) == true) {
+                    if (RG8.equals(RG1)) {
+                        JOptionPane.showMessageDialog(null, "O RG informado já está correto!");
+                        RGbuffer = RG1;
+                    } else {
+                        JOptionPane.showMessageDialog(null, RG1);
+                        System.out.println(RG1 + " = RG ''Descoberto'' 1 casa RG 8 dig");
+                        RGbuffer = RG1;
+                        copytoclipboard(RGbuffer);
+                    }
+                    resolvido = true;
+
+                    break;
+         //resolvido = true;
+
+                }
+            }
+            
+              if (resolvido)              
+          { resolvido = false;
+              break;}   
+              
+         for(int k = 0; k <=8; k++){
+         carregavalorcnpj(RG1);
+         
+         if(x[k] - (int) i >= 0){
+         x[k] = y[k] - (int) i;}
+         
+         if(x[k] >= 10 && x[k] < 0){
+         x[k] = 0;}
+         
+         RG1 = (x[0]+""+x[1]+""+x[2]+""+x[3]+""+x[4]+""+x[5]+""+x[6]+""+x[7]+""+x[8]);
+         carregavalorrg(RG1);
+         digitorg7(RG1);
+         if(validadigitosrg7(RG1) == true){
+         JOptionPane.showMessageDialog(null, RG1);   
+         System.out.println(RG1+" = RG ''Descoberto'' 2 casas RG8 dig");
+         RGbuffer = RG1;
+         copytoclipboard(RGbuffer);
+         resolvido = true;
+         break;
+         }
+         
+             }   
+        }
+     }
      
      
      public void copytoclipboard(String CPF){

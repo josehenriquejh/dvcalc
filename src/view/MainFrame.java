@@ -115,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(btnconsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 63, -1, -1));
 
         btnvalidar.setText("Validar");
-        btnvalidar.setToolTipText("Consulta se o CPFé válido, já com os 11 dígitos contando com os 2 dígitos verificadores");
+        btnvalidar.setToolTipText("Consulta se o CPF é válido, já com os 11 dígitos contando com os 2 dígitos verificadores");
         btnvalidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnvalidarActionPerformed(evt);
@@ -147,7 +147,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(btnsair, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 80, -1));
 
         selecaorgcpf.add(radiorg);
-        radiorg.setText("RG");
+        radiorg.setText("RG SSP/SP");
         radiorg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiorgActionPerformed(evt);
@@ -236,17 +236,20 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println(RG);
             if (RG.length() > 8 || RG.length() < 7) {
                 JOptionPane.showMessageDialog(null, "Valor Inserido do RG Incorreto.");
-                CPF9 = null;
+                RG = null;
             } else {
-                validador.carregavalorrg(RG);
-                validador.digitorg();
+                
                 try {
                     switch (RG.length()) {
                         case 7:
-                            JOptionPane.showMessageDialog(null, "Dígito: " + validador.x9 + "\n(" + formatrg7(RG + "" + validador.x9) + ")");
-                            validador.copytoclipboard(RG + "" + validador.x9);
+                            RG7 = txt1.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
+                            calcularg7();
+                            JOptionPane.showMessageDialog(null, "Dígito: " + validador.x8 + "\n(" + formatrg7(RG + "" + validador.x8) + ")");
+                            validador.copytoclipboard(RG + "" + validador.x8);
                             break;
                         case 8:
+                            RG8 = txt1.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
+                            calcularg8();
                             JOptionPane.showMessageDialog(null, "Dígito: " + validador.x9 + "\n(" + formatrg8(RG + "" + validador.x9) + ")");
                             validador.copytoclipboard(RG + "" + validador.x9);
                             break;
@@ -278,7 +281,7 @@ public class MainFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Cpf Inválido");
                 }
             }
-        } else {
+        } else if (radiocnpj.isSelected()){
             CNPJ14 = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
 
             if (CNPJ14.length() != 14) {
@@ -292,29 +295,66 @@ public class MainFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "CNPJ Inválido");
                 }
             }
+        } else {
+        RG = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");    
+       
+            if (RG.length() < 8 && RG.length() > 9) {
+                JOptionPane.showMessageDialog(null, "Valor informado não possui 7 ou 8 dígitos.");
+                CNPJ14 = null;
+            } else {
+                if (RG.length() == 8) {
+                    if (validador.validadigitosrg7(RG) == true) {
+                        JOptionPane.showMessageDialog(null, "RG Válido!");
+                        validador.copytoclipboard(RG);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "RG Inválido");
+                    }
+                } else if (RG.length() == 9) {
+                    if (validador.validadigitosrg8(RG) == true) {
+                        JOptionPane.showMessageDialog(null, "RG Válido!");
+                        validador.copytoclipboard(RG);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "RG Inválido");
+                    }
+                }
+        
+            }
         }
     }//GEN-LAST:event_btnvalidarActionPerformed
 
     private void btnsimilaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimilaresActionPerformed
         if (radiocpf.isSelected()) {
+            
             CPF11 = txt2.getText().replace(".", "").replace(",", "").replace("-", "");
+            if(CPF11.length() == 11){
             validador.carregavalor(CPF11);
-            //for(int i = 0; i <= 10; i++){
-            //    System.out.println(validador.v[i]);}
-
             validador.gerarsimilares(CPF11);
-            txt2.setText(validador.CPFbuffer);
+            txt2.setText(validador.CPFbuffer);}
+            else{
+            JOptionPane.showMessageDialog(null, "Valor inserido não possui 11 dígitos.");}
         } else if (radiocnpj.isSelected()) {
+            
             CNPJ14 = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");
+            if(CNPJ14.length() == 14){
             validador.carregavalorcnpj(CNPJ14);
-            //for(int i = 0; i <= 10; i++){
-            //    System.out.println(validador.v[i]);}
-
             validador.gerarsimilarescnpj(CNPJ14);
-            txt2.setText(validador.CNPJbuffer);
+            txt2.setText(validador.CNPJbuffer);}
+            else{
+            JOptionPane.showMessageDialog(null, "Valor inserido não possui 14 dígitos");}
         } else if (radiorg.isSelected()){
-                //fazer if de tamanhos 7 e 8
-        
+             RG = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");   //fazer if de tamanhos 7 e 8
+             if(RG.length() == 8){ 
+             RG7 = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");    
+             validador.carregavalorrg(RG7);
+             validador.gerarsimilaresrg7(RG7);
+             txt2.setText(validador.RGbuffer);}
+             else if(RG.length() == 9){
+             RG8 = txt2.getText().replace(".", "").replace(",", "").replace("-", "").replace("/","");    
+             validador.carregavalorrg(RG8);
+             validador.gerarsimilaresrg8(RG8);
+             txt2.setText(validador.RGbuffer);}
+             else {
+             JOptionPane.showMessageDialog(null, "Valor inserido não possui 8 ou 9 dígitos.");}
         }
         
         //System.out.println("buffer="+validador.CPFbuffer);
@@ -326,11 +366,17 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsairActionPerformed
 
     private void radiorgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiorgActionPerformed
-        txt2.setVisible(false);
-        btnvalidar.setVisible(false);
-        btnsimilares.setVisible(false);
-        lbl2.setVisible(false);
+        txt2.setVisible(true);
+        btnvalidar.setVisible(true);
+        btnsimilares.setVisible(true);
+        btnsimilares.setText("Gerar RGs Similares");
+        btnconsultar.setToolTipText("Consulta o dígito verificador do RG de SSP/SP, insira apenas os 7 ou 8 primeiros dígitos");
+        btnvalidar.setToolTipText("Consulta se o RG de SSP/SP é válido, já com os 8 ou 9 dígitos contando com o dígito verificador");
+        btnsimilares.setToolTipText("Se o RG de SSP/SP estiver com 1 número errado, calcula o RG válido mais próximo, informar o RG errado com 8 ou 9 dígitos");
+        lbl2.setVisible(true);
         lbl1.setText("RG de SSP/SP 7 ou 8 dígitos:");
+        lbl2.setText("RG de SSP/SP 8 ou 9 dígitos (calcular se o RG é válido ou descobrir RGs similares):");
+    
     }//GEN-LAST:event_radiorgActionPerformed
 
     private void radiocpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiocpfActionPerformed
@@ -338,6 +384,10 @@ public class MainFrame extends javax.swing.JFrame {
         btnvalidar.setVisible(true);
         btnsimilares.setVisible(true);
         lbl2.setVisible(true);
+        btnsimilares.setText("Gerar CPFs Similares");
+        btnconsultar.setToolTipText("Consulta os 2 dígitos verificadores do CPF, insira apenas os 9 primeiros dígitos");
+        btnvalidar.setToolTipText("Consulta se o CPF é válido, já com os 11 dígitos contando com os 2 dígitos verificadores");
+        btnsimilares.setToolTipText("Se o CPF estiver com 1 número errado, calcula o CPF válido mais próximo, informar o CPF errado com 11 dígitos");
         lbl1.setText("CPF 9 Digitos:");
         lbl2.setText("CPF 11 Digitos (calcular se o CPF é válido ou descobrir CPF similares):");
     }//GEN-LAST:event_radiocpfActionPerformed
@@ -355,6 +405,10 @@ public class MainFrame extends javax.swing.JFrame {
         btnvalidar.setVisible(true);
         btnsimilares.setVisible(true);
         lbl2.setVisible(true);
+        btnsimilares.setText("Gerar CNPJs Similares");
+         btnconsultar.setToolTipText("Consulta os 2 dígitos verificadores do CNPJ, insira apenas os 8 primeiros dígitos se quiser calcular os dígitos da matriz ou os 12 primeiros se quiser calcular de alguma filial");
+        btnvalidar.setToolTipText("Consulta se o CNPJ é válido, já com os 14 dígitos contando com os 2 dígitos verificadores");
+        btnsimilares.setToolTipText("Se o CNPJ estiver com 1 número errado, calcula o CNPJ válido mais próximo, informar o CNPJ errado com 14 dígitos");
         lbl1.setText("CNPJ 8 ou 12 Digitos:");
         lbl2.setText("CNPJ 14 Digitos (calcular se o CNPJ é válido ou descobrir CNPJ similares):");
     }//GEN-LAST:event_radiocnpjActionPerformed
@@ -410,6 +464,20 @@ public class MainFrame extends javax.swing.JFrame {
         validador.digito1cnpj12(CNPJ12);
         validador.digito2cnpj12();
         validador.copytoclipboard(CNPJ12 + "" + validador.y13 + "" + validador.y14);
+    }
+    
+    public void calcularg7(){
+        validador.carregavalorrg(RG7);
+        validador.digitorg7(RG7);
+        validador.copytoclipboard(RG7 + "" + validador.x8);
+   
+    }
+    
+    public void calcularg8(){
+        validador.carregavalorrg(RG8);
+        validador.digitorg8(RG8);
+        validador.copytoclipboard(RG8 + "" + validador.x9);
+   
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnconsultar;
