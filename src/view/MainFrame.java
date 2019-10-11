@@ -1,11 +1,13 @@
 package view;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import validadorcpf.ValidadorCPF;
+import validadorcpf.testingJsoup;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -65,6 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
         radiorg = new javax.swing.JRadioButton();
         radiocpf = new javax.swing.JRadioButton();
         radiocnpj = new javax.swing.JRadioButton();
+        btnConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(440, 291));
@@ -156,6 +159,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(radiocnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 80, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -388,6 +399,15 @@ public class MainFrame extends javax.swing.JFrame {
         lbl2.setText("CNPJ 14 Digitos (calcular se o CNPJ é válido ou descobrir CNPJ similares):");
     }//GEN-LAST:event_radiocnpjActionPerformed
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        try {
+            testingJsoup.jsoupfromfiletest();
+            testingJsoup.jsouptest();
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -448,6 +468,7 @@ public class MainFrame extends javax.swing.JFrame {
         validador.copytoclipboard(RG8 + "" + validador.x9);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnconsultar;
     private javax.swing.JButton btnsair;
     private javax.swing.JButton btnsimilares;
